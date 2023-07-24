@@ -2,6 +2,12 @@
 
 <h1>Jobs</h1>
 
+<% if user_signed_in? #si esta logeado %>
+  <div>
+    Welcome <%= current_user.name %>
+    <%= button_to "Salir", destroy_user_session_path, method: :delete %>
+  </div>
+<% end %>
 <div id="jobs">
   <% @jobs.each do |job| %>
     <%= render job %>
