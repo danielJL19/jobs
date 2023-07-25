@@ -23,6 +23,11 @@ gem "turbo-rails"
 
 gem 'devise'
 
+gem 'figaro'
+
+gem "aws-sdk-s3"
+
+
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 

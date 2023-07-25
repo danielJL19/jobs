@@ -3,6 +3,9 @@
 <% if user_signed_in?#si esta logeado %>
   <div>
     Welcome <%= current_user.email %>
+    <% if current_user.avatar.attached? %>
+      <%= image_tag current_user.avatar, width:300 %>
+    <% end %>
     <%= button_to "Salir", destroy_user_session_path, method: :delete %>
   </div>
   <!--ADMIN-->
