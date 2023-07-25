@@ -1,10 +1,19 @@
-<p style="color: green"><%= notice %></p>
+
 
 <%= render @job %>
 
 <div>
-  <%= link_to "Edit this job", edit_job_path(@job) %> |
-  <%= link_to "Back to jobs", jobs_path %>
+    <% if @job.user_id == current_user.id %>
+      <%= link_to "Editar job", edit_job_path(@job) %> 
+    <% end %>
+    <%= link_to "Back to jobs", jobs_path %>
 
-  <%= button_to "Destroy this job", @job, method: :delete %>
+  <% if @job.user_id == current_user.id %>
+
+    <%= button_to "Eliminar job", @job, method: :delete %>
+    
+  <% end %>
+  <%= if @job.user.roles != admin%>
+    <%= link_to "Postular" %>
+  <% end %>
 </div>

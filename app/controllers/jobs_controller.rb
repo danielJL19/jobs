@@ -1,6 +1,9 @@
 class JobsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_job, only: %i[ show edit update destroy ]
-
+  before_action except: [:index, :show] do
+    authorize_request(["admin"])
+  end
   # GET /jobs or /jobs.json
   def index
     @jobs = Job.all
@@ -22,14 +25,14 @@ class JobsController < ApplicationController
   # POST /jobs or /jobs.json
   def create
     @job = Job.new(job_params)
-
+    @job.user = current_user
     respond_to do |format|
       if @job.save
         format.html { redirect_to job_url(@job), notice: "Job was successfully created." }
-        format.json { render :show, status: :created, location: @job }
+
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @job.errors, status: :unprocessable_entity }
+
       end
     end
   end
@@ -39,10 +42,10 @@ class JobsController < ApplicationController
     respond_to do |format|
       if @job.update(job_params)
         format.html { redirect_to job_url(@job), notice: "Job was successfully updated." }
-        format.json { render :show, status: :ok, location: @job }
+
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @job.errors, status: :unprocessable_entity }
+
       end
     end
   end
@@ -53,7 +56,7 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to jobs_url, notice: "Job was successfully destroyed." }
-      format.json { head :no_content }
+
     end
   end
 
@@ -65,6 +68,12 @@ class JobsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def job_params
-      params.require(:job).permit(:name, :description, :user_id)
+      params.require(:job).permit(:name, :description)
+    end
+
+    def verify_ofert_user
+      unless @job == current_user
+        return root_path
+      end
     end
 end

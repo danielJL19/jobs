@@ -2,12 +2,21 @@
 
 <h1>Jobs</h1>
 
-<% if user_signed_in? #si esta logeado %>
+<% if user_signed_in?#si esta logeado %>
   <div>
-    Welcome <%= current_user.name %>
+    Welcome <%= current_user.email %>
     <%= button_to "Salir", destroy_user_session_path, method: :delete %>
   </div>
+  <!--ADMIN-->
+  <% if current_user.roles == "admin" %>
+    <p>Dashboard <%= current_user.roles %> </p>
+    <%= link_to "Nuevo trabajo", new_job_path %>
+  <% else %>
+  <!--CLIENTE-->
+    <p>Dashboard <%= current_user.roles %> </p>
+  <% end %>
 <% end %>
+
 <div id="jobs">
   <% @jobs.each do |job| %>
     <%= render job %>
@@ -17,4 +26,4 @@
   <% end %>
 </div>
 
-<%= link_to "New job", new_job_path %>
+

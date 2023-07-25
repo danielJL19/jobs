@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   #RELACIONES
   has_many :jobs
-
+  has_many :postulations
   #ROLES
   enum :roles , [:employee, :admin]
 end

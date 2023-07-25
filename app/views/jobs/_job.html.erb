@@ -1,17 +1,17 @@
 <div id="<%= dom_id job %>">
   <p>
-    <strong>Name:</strong>
+    <strong>Nombre:</strong>
     <%= job.name %>
   </p>
 
   <p>
-    <strong>Description:</strong>
+    <strong>Descripción:</strong>
     <%= job.description %>
   </p>
 
   <p>
-    <strong>User:</strong>
-    <%= job.user_id %>
+    <strong>Escrito por :</strong>
+    <%= job.user.email %>
   </p>
 
 </div>
