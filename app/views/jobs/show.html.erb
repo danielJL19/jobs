@@ -13,7 +13,7 @@
     <%= button_to "Eliminar job", @job, method: :delete %>
     
   <% end %>
-  <%= if @job.user.roles != admin%>
-    <%= link_to "Postular" %>
-  <% end %>
+
+    <%= link_to "Postular", postulation_create_path(@job) %>
+
 </div>

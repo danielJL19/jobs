@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'pages/home'
-
+  get 'postulacion/crear/:id',to: 'postulations#create',as: :postulation_create
 resources :jobs
 
   devise_for :users, :controllers => {
