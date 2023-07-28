@@ -6,8 +6,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   #RELACIONES
-  has_many :jobs
-  has_many :postulations
+  has_many :jobs, dependent: :destroy
+  has_many :postulations, dependent: :destroy
   #ROLES
   enum :roles , [:employee, :admin]
 end

@@ -1,38 +1,43 @@
-<p style="color: green"><%= notice %></p>
-<h1>Jobs</h1>
-<% if user_signed_in?#si esta logeado %>
-  <div>
-    Welcome <%= current_user.email %>
-    <% if current_user.avatar.attached? %>
-      <%= image_tag current_user.avatar, width:300 %>
+<div class="container">  
+  <p style="color: green"><%= notice %></p>
+  <h1>Jobs</h1>
+  <% if user_signed_in?#si esta logeado %>
+    <div>
+
+      <span class="fs-4"> Bienvenido estimado/a <%= current_user.email %></span>
+
+      <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar, width:300 %>
+      <% end %>
+      <%= button_to "Salir", destroy_user_session_path, method: :delete %>
+    </div>
+    <!--ADMIN-->
+    <% if current_user.roles == "admin" %>
+      <p>Dashboard <%= current_user.roles %> </p>
+      <%= link_to "Nuevo trabajo", new_job_path %>
+    <% else %>
+      <!--CLIENTE-->
+      <p>Dashboard <%= current_user.roles %> </p>
     <% end %>
-    <%= button_to "Salir", destroy_user_session_path, method: :delete %>
-  </div>
-  <!--ADMIN-->
-  <% if current_user.roles == "admin" %>
-    <p>Dashboard <%= current_user.roles %> </p>
-    <%= link_to "Nuevo trabajo", new_job_path %>
-  <% else %>
-    <!--CLIENTE-->
-    <p>Dashboard <%= current_user.roles %> </p>
   <% end %>
-<% end %>
-<div id="jobs">
-  <% @jobs.each do |job| %>
-    <%= render job %>
-    <p>
-      <%= link_to "Show this job", job %>
-    </p>
+  <div id="jobs">
+    <% @jobs.each do |job| %>
+      <%= render job %>
+      <p>
+        <%= link_to "Show this job", job %>
+      </p>
+      <hr>
+    <% end %>
+  </div>
+  <% if user_signed_in?%>
+    <% if current_user.roles == "admin"%>
+      <h3>Ofertas notificadas</h3>
+      <% @postulations.each do |p|%>
+        <div>
+          <h4>Oferta: <%= p.job.name %>  </h4>
+          <p>Usuario solicitado: <%= p.user.name %></p>
+        </div>
+      <% end %>
+    <% end %>
   <% end %>
 </div>
-<% if user_signed_in?%>
-  <% if current_user.roles == "admin"%>
-    <h3>Ofertas notificadas</h3>
-    <% @postulations.each do |p|%>
-      <div>
-        <h4>Oferta: <%= p.job.name %>  </h4>
-        <p>Usuario solicitado: <%= p.user.name %></p>
-      </div>
-    <% end %>
-  <% end %>
-<% end %>
