@@ -1,19 +1,20 @@
+<div class="container">
 
+  <%= render @job %>
 
-<%= render @job %>
+  <div>
+      <% if @job.user_id == current_user.id %>
+        <%= link_to "Editar job", edit_job_path(@job) %> 
+      <% end %>
+      <%= link_to "Back to jobs", jobs_path %>
 
-<div>
     <% if @job.user_id == current_user.id %>
-      <%= link_to "Editar job", edit_job_path(@job) %> 
+
+      <%= button_to "Eliminar job", @job, method: :delete %>
+      
     <% end %>
-    <%= link_to "Back to jobs", jobs_path %>
 
-  <% if @job.user_id == current_user.id %>
+      <%= link_to "Postular", postulation_create_path(@job) %>
 
-    <%= button_to "Eliminar job", @job, method: :delete %>
-    
-  <% end %>
-
-    <%= link_to "Postular", postulation_create_path(@job) %>
-
+  </div>
 </div>
