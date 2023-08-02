@@ -11,7 +11,7 @@ Estas instrucciones te guiarán para obtener una copia de este proyecto en funci
 1. Clonamos nuestro repositorio
 
 ```bash
-git clone https://github.com/Sandyluuu/News.git
+git clone https://github.com/danielJL19/jobs.git
 ```
 ### Prerrequisitos 📋
 
