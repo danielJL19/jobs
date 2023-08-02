@@ -7,8 +7,8 @@ ofertas de trabajo
 [![1.png](https://i.postimg.cc/bNb7MZ4D/1.png)](https://postimg.cc/gnztL2zm)
 
 ## Empezando 🚀
-Estas instrucciones te guiarán para obtener una copia de este proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas.
-1.Clonamos nuestro repositorio
+Estas instrucciones te guiarán para obtener una copia de este proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas.<br>
+1. Clonamos nuestro repositorio
 
 ```bash
 git clone https://github.com/Sandyluuu/News.git
